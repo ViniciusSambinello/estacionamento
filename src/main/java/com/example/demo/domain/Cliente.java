@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,8 @@ public class Cliente {
     private String cpf;
     private String telefone;
     private Date dataNasc;
+    @OneToOne
+    private Endereco end;
     private String email;
     @Column(precision = 10, scale = 2)
     private BigDecimal limiteDeCompra;
