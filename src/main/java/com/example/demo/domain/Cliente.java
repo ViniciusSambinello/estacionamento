@@ -19,13 +19,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor         // gera construtor sem argumentos
 @AllArgsConstructor        // gera construtor com todos os argumentos
 public class Cliente {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String nome;
-
     private String cpf;
     private String telefone;
     private Date dataNasc;
