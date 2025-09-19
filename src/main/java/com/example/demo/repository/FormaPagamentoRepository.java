@@ -1,5 +1,11 @@
 package com.example.demo.repository;
 
-public interface FormaPagamentoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.example.demo.domain.FormaPagamento;
+
+
+@Repository
+public interface FormaPagamentoRepository extends JpaRepository<FormaPagamento, Integer> {
 }
