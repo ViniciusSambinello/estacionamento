@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -27,15 +28,12 @@ public class Cliente {
     private String cpf;
     private String telefone;
     private Date dataNasc;
-    @OneToOne
-    private Endereco end;
     private String email;
     @Column(precision = 10, scale = 2)
-    private BigDecimal limiteDeCompra;
-    
-    
-    
-    
-    
+    private BigDecimal limiteDeCompra; 
+    private String  plano; 
+    @OneToOne
+    @JoinColumn(name = "cliente_id") // cria FK em cliente.endereco_id
+    private Endereco endereco;
 
 }
