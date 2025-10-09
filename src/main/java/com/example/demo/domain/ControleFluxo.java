@@ -15,10 +15,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "cliente")  // nome da tabela no banco
+@Table(name = "controlefluxo")  // nome da tabela no banco
 @Data                     // gera getters, setters, toString, equals e hashCode
 @NoArgsConstructor         // gera construtor sem argumentos
 @AllArgsConstructor        // gera construtor com todos os argumentos
+
 public class ControleFluxo {
 	
 	@Id

@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,11 +30,9 @@ public class Cliente {
     private String telefone;
     private Date dataNasc;
     private String email;
-    @Column(precision = 10, scale = 2)
-    private BigDecimal limiteDeCompra; 
     private String  plano; 
-    @OneToOne
-    @JoinColumn(name = "cliente_id") // cria FK em cliente.endereco_id
+    @OneToOne(cascade = CascadeType.ALL) // <-- Adicione o cascade
+    @JoinColumn(name = "endereco_id")    // <-- Define a coluna de FK
     private Endereco endereco;
 
 }
