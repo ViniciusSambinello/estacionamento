@@ -10,12 +10,13 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "formapagamento")  // nome da tabela no banco
 @Data                     // gera getters, setters, toString, equals e hashCode
 @NoArgsConstructor         // gera construtor sem argumentos
-@AllArgsConstructor  
+@AllArgsConstructor
 public class FormaPagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

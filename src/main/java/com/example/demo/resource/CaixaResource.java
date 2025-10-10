@@ -1,47 +1,48 @@
 package com.example.demo.resource;
 
+import com.example.demo.domain.Caixa;
+import com.example.demo.domain.Cliente;
+import com.example.demo.service.CaixaService;
+import com.example.demo.service.ClienteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.domain.Cliente;
-import com.example.demo.service.ClienteService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
-public class ClienteResource {
+@RequestMapping("/caixa")
+public class CaixaResource {
 
-    private final ClienteService service;
+    private final CaixaService service;
 
-    public ClienteResource(ClienteService service) {
+    public CaixaResource(CaixaService service) {
         this.service = service;
     }
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> listarTodos() {
+    public ResponseEntity<List<Caixa>> listarTodos() {
         return ResponseEntity.ok(service.listarTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<Caixa> buscarPorId(@PathVariable Integer id) {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> salvar(@RequestBody Cliente cliente) {
-        Cliente novoCliente = service.salvar(cliente);
-        return ResponseEntity.ok(novoCliente);
+    public ResponseEntity<Caixa> salvar(@RequestBody Caixa caixa) {
+        Caixa novoCaixa = service.salvar(caixa);
+        return ResponseEntity.ok(novoCaixa);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizar(@PathVariable Integer id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Caixa> atualizar(@PathVariable Integer id, @RequestBody Caixa caixa) {
         return service.buscarPorId(id)
                 .map(existente -> {
-                    cliente.setId(id);
-                    Cliente atualizado = service.salvar(cliente);
+                    caixa.setId(id);
+                    Caixa atualizado = service.salvar(caixa);
                     return ResponseEntity.ok(atualizado);
                 })
                 .orElse(ResponseEntity.notFound().build());

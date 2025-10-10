@@ -15,12 +15,14 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "cliente")  // nome da tabela no banco
 @Data                     // gera getters, setters, toString, equals e hashCode
 @NoArgsConstructor         // gera construtor sem argumentos
 @AllArgsConstructor        // gera construtor com todos os argumentos
+@Setter
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,5 +36,4 @@ public class Cliente {
     @OneToOne(cascade = CascadeType.ALL) // <-- Adicione o cascade
     @JoinColumn(name = "endereco_id")    // <-- Define a coluna de FK
     private Endereco endereco;
-
 }
