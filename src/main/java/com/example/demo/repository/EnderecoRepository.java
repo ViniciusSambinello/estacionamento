@@ -1,11 +1,12 @@
 package com.example.demo.repository;
 
+import com.example.demo.query.EnderecoRepositoryQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.Cliente;
 import com.example.demo.domain.Endereco;
 
-public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
+@Repository
+public interface EnderecoRepository extends JpaRepository<Endereco, Integer>, EnderecoRepositoryQuery {
 
 }
