@@ -34,22 +34,13 @@ public class EnderecoRepositoryImpl implements EnderecoRepositoryQuery {
         Predicate[] predicates = criarRestricoes(enderecoFilter, builder, root);
         criteria.where(predicates);
 
-        // Criar uma contagem de registros
-        CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
-        Root<Endereco> countRoot = countCriteria.from(Endereco.class);
-        countCriteria.select(builder.count(countRoot));
-        Predicate[] countPredicates = criarRestricoes(enderecoFilter, builder, countRoot);
-        countCriteria.where(countPredicates);
-        TypedQuery<Long> countQuery = manager.createQuery(countCriteria);
-        Long totalRegistros = countQuery.getSingleResult(); // Total de registros que satisfazem os predicados
-
         TypedQuery<Endereco> query = manager.createQuery(criteria);
         query.setMaxResults(10);
         adicionarRestricoesDePaginacao(query, pageable);
 
         List<Endereco> resultList = query.getResultList();
 
-        return new PageImpl<>(resultList, pageable, totalRegistros);
+        return new PageImpl<>(resultList, pageable, 0);
 
     }
 
