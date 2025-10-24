@@ -1,13 +1,14 @@
 package com.example.demo.resource;
 
 import com.example.demo.domain.Endereco;
-import com.example.demo.domain.Endereco;
-import com.example.demo.query.EnderecoFilter;
+import com.example.demo.repository.filters.EnderecoFilter;
 import com.example.demo.repository.EnderecoRepository;
 import com.example.demo.service.EnderecoService;
+import com.example.demo.specification.EnderecoSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,8 @@ public class EnderecoResource {
 
     @GetMapping("/filtro")
     public Page<Endereco> findAllPag(EnderecoFilter enderecoFilter, Pageable pageable){
-        Page<Endereco> filtro = repo.filtrar(enderecoFilter, pageable);
+        Specification<Endereco> spec = EnderecoSpecification.withFilters(enderecoFilter);
+        Page<Endereco> filtro = repo.findAll(spec, pageable);
         return filtro;
     }
 

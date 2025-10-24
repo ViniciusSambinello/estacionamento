@@ -1,4 +1,4 @@
-package com.example.demo.query;
+package com.example.demo.repository.filters;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +15,4 @@ public class EnderecoFilter {
     private String cep;
     private String cidade;
     private String uf;
-
-    public EnderecoFilter(){
-        super();
-    }
 }
