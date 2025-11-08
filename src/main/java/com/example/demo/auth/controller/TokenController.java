@@ -36,7 +36,7 @@ public class TokenController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request){
         final Optional<User> userOptional = userRepository.findByUsername(request.username());
 
-        if (userOptional.isEmpty() || userOptional.get().isLoginCorrect(request, passwordEncoder)){
+        if (userOptional.isEmpty() || !userOptional.get().isLoginCorrect(request, passwordEncoder)){
             throw new BadCredentialsException("user or password is invalid.");
         }
 

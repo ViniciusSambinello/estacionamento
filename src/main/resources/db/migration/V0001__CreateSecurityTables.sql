@@ -9,7 +9,7 @@ CREATE TABLE tb_roles (
 
 -- Criação da tabela de usuários
 CREATE TABLE tb_users (
-    user_id CHAR(36) NOT NULL,
+    user_id BINARY(16) NOT NULL,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (user_id)
@@ -17,7 +17,7 @@ CREATE TABLE tb_users (
 
 -- Criação da tabela intermediária de relacionamento N:N entre usuários e papéis
 CREATE TABLE tb_users_roles (
-    user_id CHAR(36) NOT NULL,
+    user_id BINARY(16) NOT NULL,
     role_id BIGINT NOT NULL,
     PRIMARY KEY (user_id, role_id),
     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES tb_users(user_id) ON DELETE CASCADE,
